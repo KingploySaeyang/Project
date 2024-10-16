@@ -6,7 +6,7 @@ const User = require("../models/user"); // นำเข้าโมเดล Use
 // ฟังก์ชันสำหรับเพิ่มห้องประชุม
 exports.addRoom = async (req, res) => {
     try {
-        const { MeetingRoomNumber, floor, status } = req.body; // ดึง MeetingRoomNumber, floor, และ status
+        const { MeetingRoomNumber, floor } = req.body; // ดึง MeetingRoomNumber และ floor
 
         // ตรวจสอบว่า MeetingRoomNumber ถูกส่งมาหรือไม่
         if (!MeetingRoomNumber) {
@@ -19,12 +19,16 @@ exports.addRoom = async (req, res) => {
             return res.status(400).json({ message: 'Room already exists with this Meeting Room Number' }); // ถ้ามีห้องประชุมนี้อยู่แล้ว
         }
 
-        // ตรวจสอบค่า floor และ status ก่อนการสร้างห้องประชุม
-        if (!floor || !status) {
-            return res.status(400).json({ message: 'Floor and status are required' }); // ส่งข้อความถ้าไม่มีค่า floor หรือ status
+        // ตรวจสอบว่ามีค่า floor หรือไม่
+        if (!floor) {
+            return res.status(400).json({ message: 'Floor is required' }); // ส่งข้อความถ้าไม่มีค่า floor
         }
 
-        const room = new Room({ MeetingRoomNumber, floor, status }); // สร้างห้องประชุมใหม่
+        // กำหนดสถานะเริ่มต้นของห้องเป็น 'available'
+        const status = 'available';
+
+        // สร้างห้องประชุมใหม่
+        const room = new Room({ MeetingRoomNumber, floor, status });
         await room.save(); // บันทึกห้องประชุมลงฐานข้อมูล
 
         res.status(201).json({ message: 'Room added successfully', room }); // ส่งข้อความยืนยันการเพิ่ม
@@ -32,6 +36,7 @@ exports.addRoom = async (req, res) => {
         res.status(500).json({ message: err.message }); // ส่งข้อความผิดพลาด
     }
 };
+
 
 // ฟังก์ชันสำหรับจองห้องประชุม
 exports.bookingRoom = async (req, res) => {

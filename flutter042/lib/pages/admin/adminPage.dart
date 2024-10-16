@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter042/HomePage.dart';
+import 'package:flutter042/pages/admin/modules/addroom_page.dart';
 import 'package:flutter042/pages/admin/modules/admininfo.dart';
 import 'package:flutter042/pages/admin/modules/getbooking_page.dart';
 import 'package:flutter042/pages/admin/modules/room_status_page.dart';
-import 'package:flutter042/pages/admin/modules/getbooking_page.dart';
 import 'package:flutter042/pages/admin/modules/userData/index.dart';
 import 'package:flutter042/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -62,8 +62,9 @@ class _AdminPageState extends State<AdminPage> {
     // วิดเจ็ตของแต่ละแท็บ
     final List<Widget> _tabs = [
       const UserInfoTab(), // หน้าโปรไฟล์แอดมิน
+      const AddMeetingRoomPage(), // หน้าสำหรับเพิ่มห้องประชุม
       RoomStatusPage(token: token), // ส่ง token ไปยัง RoomStatusPage
-      GetBookingPage (token: token), // ส่ง token ไปยัง ApprovalBookingPage
+      GetBookingPage(token: token), // ส่ง token ไปยัง ApprovalBookingPage
       const UserTab(), // หน้า User Data
     ];
 
@@ -95,7 +96,8 @@ class _AdminPageState extends State<AdminPage> {
         color: Colors.white,
         items: const [
           TabItem(icon: Icons.admin_panel_settings, title: 'Profile'), // ไอคอนโปรไฟล์แอดมิน
-          TabItem(icon: Icons.meeting_room, title: 'Room Status'), // ไอคอนสำหรับตรวจสอบสถานะห้องประชุม
+          TabItem(icon: Icons.add, title: 'Add Room'), // ไอคอนสำหรับเพิ่มห้องประชุม
+          TabItem(icon: Icons.meeting_room, title: 'Status'), // ไอคอนสำหรับตรวจสอบสถานะห้องประชุม
           TabItem(icon: Icons.check_circle, title: 'Approve'), // ไอคอนการอนุมัติการจองห้องประชุม
           TabItem(icon: Icons.person, title: 'User Data'), // ไอคอนการจัดการข้อมูลผู้ใช้
         ],

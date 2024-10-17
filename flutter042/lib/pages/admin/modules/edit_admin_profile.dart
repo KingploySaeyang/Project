@@ -41,7 +41,13 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Admin Profile')),
+      appBar: AppBar(
+        title: const Text(
+          'Edit Admin Profile',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.indigo[700], // เปลี่ยนสีพื้นหลัง AppBar
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -60,12 +66,14 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
               controller: _nameController,
               decoration: InputDecoration(
                 labelText: 'Full Name',
-                labelStyle: TextStyle(color: Colors.pink),
+                labelStyle: TextStyle(color: Colors.indigo[700]), // เปลี่ยนสีข้อความ
+                filled: true,
+                fillColor: Colors.white, // สีพื้นหลังเป็นสีขาว
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: BorderSide(color: Colors.indigo),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pinkAccent),
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
             ),
@@ -74,12 +82,14 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
               controller: _facultyController,
               decoration: InputDecoration(
                 labelText: 'Faculty',
-                labelStyle: TextStyle(color: Colors.pink),
+                labelStyle: TextStyle(color: Colors.indigo[700]),
+                filled: true,
+                fillColor: Colors.white,
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: BorderSide(color: Colors.indigo),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pinkAccent),
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
             ),
@@ -88,12 +98,14 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
               controller: _phoneController,
               decoration: InputDecoration(
                 labelText: 'Phone Number',
-                labelStyle: TextStyle(color: Colors.pink),
+                labelStyle: TextStyle(color: Colors.indigo[700]),
+                filled: true,
+                fillColor: Colors.white,
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: BorderSide(color: Colors.indigo),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pinkAccent),
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
             ),
@@ -102,12 +114,14 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
               controller: _roomNumController,
               decoration: InputDecoration(
                 labelText: 'Room Number',
-                labelStyle: TextStyle(color: Colors.pink),
+                labelStyle: TextStyle(color: Colors.indigo[700]),
+                filled: true,
+                fillColor: Colors.white,
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pink),
+                  borderSide: BorderSide(color: Colors.indigo),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.pinkAccent),
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
             ),
@@ -115,7 +129,7 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
             ElevatedButton(
               onPressed: _isLoading ? null : () => _editProfile(context),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pink[400],
+                backgroundColor: Colors.indigo[700], // เปลี่ยนสีปุ่ม
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
               child: _isLoading
@@ -127,7 +141,7 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
           ],
         ),
       ),
-      backgroundColor: Colors.pink[50],
+      backgroundColor: Colors.white, // เปลี่ยนสีพื้นหลังเป็นสีชมพูอ่อน
     );
   }
 
@@ -159,6 +173,7 @@ class _EditAdminProfilePageState extends State<EditAdminProfilePage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Changes saved successfully!')), // แสดงข้อความเมื่อบันทึกสำเร็จ
       );
+
       Navigator.pop(context); // กลับไปยังหน้าก่อนหน้า
     }).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(

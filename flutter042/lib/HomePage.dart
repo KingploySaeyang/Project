@@ -9,8 +9,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Home Page',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.pink[400], // ตั้งค่าสีชมพูให้กับ AppBar
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.indigo[700], 
       ),
       body: Center(
         child: Column(
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red[300], // 
+                backgroundColor: Colors.indigo[700], // 
                 foregroundColor: Colors.white, // ตั้งค่าสีตัวอักษรเป็นสีขาว
                 padding: EdgeInsets.symmetric(
                     horizontal: 50, vertical: 15), // ปรับขนาดปุ่ม
@@ -34,24 +35,24 @@ class HomePage extends StatelessWidget {
               ),
               child: Text('Login Page'),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
+            SizedBox(height: 10),
+
+            // คลิกตัวอักษร Register แทนการใช้ปุ่ม
+            TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => RegisterPage()),
                 );
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pink[200],
-                foregroundColor: Colors.white, 
-                padding: EdgeInsets.symmetric(
-                    horizontal: 50, vertical: 15), // ปรับขนาดปุ่ม
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10), // ปรับขอบมนของปุ่ม
+              child: Text(
+                'Register New Account', 
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.red, // ตั้งค่าสีตัวอักษร
+                  decoration: TextDecoration.underline, // เพิ่มเส้นใต้เพื่อให้ดูเหมือนลิงก์
                 ),
               ),
-              child: Text('Register Page'),
             ),
           ],
         ),

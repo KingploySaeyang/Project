@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter042/models/user_model.dart';
 
 class AdminController {
-  // ฟังก์ชันสำหรับเพิ่มห้องประชุม
-  Future<void> addRoom(String token, String roomNumber, String floor) async {
+  
+// ฟังก์ชันสำหรับเพิ่มห้องประชุม
+Future<void> addRoom(String token, String meetingRoomNumber, String floor) async {
   final response = await http.post(
     Uri.parse('$apiURL/api/booking/rooms'), // เปลี่ยน URL เป็น URL ของ API
     headers: {
@@ -14,16 +15,21 @@ class AdminController {
       'Content-Type': 'application/json',
     },
     body: jsonEncode({
-      'roomNumber': roomNumber,
+      'MeetingRoomNumber': meetingRoomNumber,
       'floor': floor,
       // ไม่ต้องส่ง status เพราะจะตั้งค่าเป็นว่างในฐานข้อมูล
     }),
   );
 
-  if (response.statusCode != 200) {
+  if (response.statusCode == 200) {
+    // เพิ่มห้องสำเร็จ
+    print('Meeting room added successfully');
+  } else {
+    // แสดงข้อผิดพลาด
     throw Exception('Failed to add meeting room: ${response.body}');
   }
 }
+
 
   // ฟังก์ชันสำหรับจองห้องประชุม
   Future<Map<String, dynamic>> bookingRoom(String token, String meetingRoomNumber, String userId, String bookingDate) async {
@@ -104,7 +110,7 @@ class AdminController {
   Future<List<BookingModel>> getBookings() async {
     try {
       final response = await http.get(
-        Uri.parse('$apiURL/api/room/bookings'), // URL API สำหรับดึงข้อมูลการจอง
+        Uri.parse('$apiURL/api/booking/room/bookings'), // URL API สำหรับดึงข้อมูลการจอง
       );
 
       if (response.statusCode == 200) {
@@ -150,8 +156,11 @@ class AdminController {
         throw Exception('User ID and update data are required');
       }
 
+      print(token);
+      print(userId);
+
       final response = await http.put(
-        Uri.parse('$apiURL/api/auth/users/$userId'), // URL API สำหรับอัปเดตผู้ใช้
+        Uri.parse('$apiURL/api/booking/users/$userId'), // URL API สำหรับอัปเดตผู้ใช้
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',

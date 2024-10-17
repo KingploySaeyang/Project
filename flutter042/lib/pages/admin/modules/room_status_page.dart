@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter042/controllers/admin_controller.dart';
 import 'package:flutter042/models/room_model.dart' as room;
+import 'addroom_page.dart'; // เพิ่มหน้าที่จะไป
 
 class RoomStatusPage extends StatefulWidget {
   final String token;
@@ -20,13 +21,13 @@ class _RoomStatusPageState extends State<RoomStatusPage> {
     super.initState();
     _controller = AdminController();
     futureRooms = _controller.checkRoomStatus(widget.token).then((data) {
-  return (data as List)
-      .map((roomJson) => room.RoomModel.fromJson(roomJson))
-      .toList();
-});
-  } // ปิดให้เรียบร้อย
+      return (data as List)
+          .map((roomJson) => room.RoomModel.fromJson(roomJson))
+          .toList();
+    });
+  }
 
-  @override // ต้องเพิ่ม @override ที่ build ฟังก์ชัน
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -49,6 +50,7 @@ class _RoomStatusPageState extends State<RoomStatusPage> {
                 return Card(
                   elevation: 4,
                   margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  color: Colors.white, // เปลี่ยนพื้นหลังของ Card เป็นสีขาว
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -89,6 +91,18 @@ class _RoomStatusPageState extends State<RoomStatusPage> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddMeetingRoomPage(), // ลิงค์ไปหน้าที่ต้องการ
+            ),
+          );
+        },
+        child: const Icon(Icons.add, color: Colors.white), // ไอคอนบวกสีขาว
+        backgroundColor: Colors.indigo[700], // สีปุ่มเป็นสีชมพู
+      ),
     );
-  } // ฟังก์ชัน build ปิดให้เรียบร้อย
+  }
 }

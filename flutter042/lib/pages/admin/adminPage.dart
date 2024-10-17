@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter042/HomePage.dart';
-import 'package:flutter042/pages/admin/modules/addroom_page.dart';
 import 'package:flutter042/pages/admin/modules/admininfo.dart';
 import 'package:flutter042/pages/admin/modules/getbooking_page.dart';
 import 'package:flutter042/pages/admin/modules/room_status_page.dart';
@@ -32,13 +31,13 @@ class _AdminPageState extends State<AdminPage> {
           content: const Text('Are you sure you want to log out?'),
           actions: [
             TextButton(
-              child: const Text('Cancel', style: TextStyle(color: Colors.pink)),
+              child: const Text('Cancel', style: TextStyle(color: Colors.black)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: const Text('Logout', style: TextStyle(color: Colors.pink)),
+              child: const Text('Logout', style: TextStyle(color: Colors.red)),
               onPressed: () {
                 Provider.of<UserProvider>(context, listen: false).onLogout();
                 Navigator.of(context).pop();
@@ -62,7 +61,6 @@ class _AdminPageState extends State<AdminPage> {
     // วิดเจ็ตของแต่ละแท็บ
     final List<Widget> _tabs = [
       const UserInfoTab(), // หน้าโปรไฟล์แอดมิน
-      const AddMeetingRoomPage(), // หน้าสำหรับเพิ่มห้องประชุม
       RoomStatusPage(token: token), // ส่ง token ไปยัง RoomStatusPage
       GetBookingPage(token: token), // ส่ง token ไปยัง ApprovalBookingPage
       const UserTab(), // หน้า User Data
@@ -74,29 +72,28 @@ class _AdminPageState extends State<AdminPage> {
           'Admin Page',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.pink[400],
+        backgroundColor: Colors.indigo[700],
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.logout, color: Colors.white),
             onPressed: () {
               _showLogoutDialog(context); // เรียกใช้ฟังก์ชันยืนยันการล็อกเอาท์
             },
           ),
         ],
       ),
-      backgroundColor: Colors.pink[30], // เปลี่ยนพื้นหลังให้เป็นสีชมพูอ่อน
+      backgroundColor: Colors.white, // เปลี่ยนพื้นหลังให้เป็นสีชมพูอ่อน
       body: IndexedStack(
         index: _selectedIndex, // แสดงวิดเจ็ตตาม selectedIndex
         children: _tabs,
       ),
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.react,
-        backgroundColor: Colors.pink[300],
+        backgroundColor: Colors.indigo[700],
         activeColor: Colors.white,
         color: Colors.white,
         items: const [
           TabItem(icon: Icons.admin_panel_settings, title: 'Profile'), // ไอคอนโปรไฟล์แอดมิน
-          TabItem(icon: Icons.add, title: 'Add Room'), // ไอคอนสำหรับเพิ่มห้องประชุม
           TabItem(icon: Icons.meeting_room, title: 'Status'), // ไอคอนสำหรับตรวจสอบสถานะห้องประชุม
           TabItem(icon: Icons.check_circle, title: 'Approve'), // ไอคอนการอนุมัติการจองห้องประชุม
           TabItem(icon: Icons.person, title: 'User Data'), // ไอคอนการจัดการข้อมูลผู้ใช้

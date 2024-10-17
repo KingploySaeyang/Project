@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
           'Login Page',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.pink[400],
+        backgroundColor: Colors.indigo[700],
       ),
       body: Center( // Center the form on the screen
         child: Padding(
@@ -88,12 +88,14 @@ class _LoginPageState extends State<LoginPage> {
                   controller: usernameController,
                   decoration: InputDecoration(
                     labelText: 'UserID',
-                    labelStyle: TextStyle(color: Colors.pink),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pink),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent),
+                   labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.indigo),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
                   validator: (value) {
@@ -108,12 +110,14 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle: TextStyle(color: Colors.pink),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pink),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent),
+                    labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.indigo),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
                   obscureText: true,
@@ -128,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red[300],
+                    backgroundColor: Colors.indigo[700],
                     padding: EdgeInsets.symmetric(
                       horizontal: 50,
                       vertical: 15,

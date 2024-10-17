@@ -9,7 +9,10 @@ class UserDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('${userModel.user.firstname} ${userModel.user.lastname}')),
+      appBar: AppBar(title: Text('${userModel.user.firstname} ${userModel.user.lastname}',
+      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.indigo[700], // เปลี่ยนสีพื้นหลัง AppBar
+        ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(

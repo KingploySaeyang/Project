@@ -96,7 +96,7 @@ class RegisterPage extends StatelessWidget {
           'Register Page',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.pink[400], // ตั้งสี AppBar เป็นสีชมพู
+        backgroundColor: Colors.indigo[700],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -105,16 +105,17 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
-                controller:
-                    idController, // ใช้ idController แทน usernameController
+                controller: idController,
                 decoration: InputDecoration(
-                  labelText: 'ID', // เปลี่ยน label เป็น ID
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelText: 'ID',
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true, // เปิดใช้งานสีพื้นหลัง
+                  fillColor: Colors.white, // สีพื้นหลังเป็นสีขาว
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
                 validator: (value) {
@@ -124,17 +125,19 @@ class RegisterPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(height: 16), // เพิ่มระยะห่าง
+              SizedBox(height: 16),
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
                 obscureText: true,
@@ -150,12 +153,14 @@ class RegisterPage extends StatelessWidget {
                 controller: firstnameController,
                 decoration: InputDecoration(
                   labelText: 'First Name',
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
                 validator: (value) {
@@ -170,12 +175,14 @@ class RegisterPage extends StatelessWidget {
                 controller: lastnameController,
                 decoration: InputDecoration(
                   labelText: 'Last Name',
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
                 validator: (value) {
@@ -190,16 +197,17 @@ class RegisterPage extends StatelessWidget {
                 value: selectedFaculty,
                 decoration: InputDecoration(
                   labelText: 'Faculty',
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
-                isExpanded:
-                    true, // เพิ่ม property นี้เพื่อทำให้ dropdown ขยายเต็มขอบเขต
+                isExpanded: true,
                 items: [
                   'Faculty of Science and Digital Innovation',
                   'Faculty of Education',
@@ -214,9 +222,8 @@ class RegisterPage extends StatelessWidget {
                     value: faculty,
                     child: Text(
                       faculty,
-                      overflow:
-                          TextOverflow.ellipsis, // ป้องกันการล้นของข้อความ
-                      maxLines: 1, // จำกัดจำนวนบรรทัด
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                   );
                 }).toList(),
@@ -230,18 +237,19 @@ class RegisterPage extends StatelessWidget {
                   return null;
                 },
               ),
-
               SizedBox(height: 16),
               TextFormField(
                 controller: phoneController,
                 decoration: InputDecoration(
                   labelText: 'Phone',
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
                 validator: (value) {
@@ -256,12 +264,14 @@ class RegisterPage extends StatelessWidget {
                 controller: roomNumController,
                 decoration: InputDecoration(
                   labelText: 'Room Number',
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
                 validator: (value) {
@@ -276,23 +286,27 @@ class RegisterPage extends StatelessWidget {
                 value: selectedRole,
                 decoration: InputDecoration(
                   labelText: 'Role',
-                  labelStyle: TextStyle(color: Colors.pink),
+                  labelStyle: TextStyle(color: Colors.indigo[700]),
+                  filled: true,
+                  fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
+                    borderSide: BorderSide(color: Colors.indigo),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
+                isExpanded: true,
                 items: [
-                  'user',
-                  'admin',
-                ].map((role) {
-                  return DropdownMenuItem(
-                    value: role,
-                    child: Text(role),
-                  );
-                }).toList(),
+                  DropdownMenuItem(
+                    value: 'admin',
+                    child: Text('Admin'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'user',
+                    child: Text('User'),
+                  ),
+                ],
                 onChanged: (value) {
                   selectedRole = value;
                 },
@@ -303,10 +317,17 @@ class RegisterPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(height: 16), // เพิ่มระยะห่าง
+              SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => _register(context),
-                child: Text('Register'),
+                child: Text(
+                  'Register',
+                  style: TextStyle(
+                      color: Colors.white), // เปลี่ยนสีข้อความเป็นสีขาว
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.indigo[700],
+                ),
               ),
             ],
           ),

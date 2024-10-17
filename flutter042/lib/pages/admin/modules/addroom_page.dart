@@ -17,43 +17,60 @@ class _AddMeetingRoomPageState extends State<AddMeetingRoomPage> {
   bool _isLoading = false;
 
   // สร้างอินสแตนซ์ของ AdminController
-  final AdminController _adminController = AdminController();
+  late AdminController _adminController;
 
-  // ฟังก์ชันที่ใช้เมื่อกดปุ่มเพิ่มห้องประชุม
-  void _submitForm() async {
-    if (_formKey.currentState!.validate()) {
+  @override
+  void initState() {
+    super.initState();
+    _adminController = AdminController(); // กำหนดค่าให้กับ adminController
+  }
+
+// ฟังก์ชันที่ใช้เมื่อกดปุ่มเพิ่มห้องประชุม
+void _submitForm() async {
+  if (_formKey.currentState!.validate()) {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final String token = Provider.of<UserProvider>(context, listen: false).accessToken; // รับ token จาก Provider
+
+    try {
+      // เรียกฟังก์ชัน addRoom จาก adminController
+      await _adminController.addRoom(
+        token,
+        _meetingRoomNumberController.text,
+        _floorController.text,
+      );
+
+      // แสดงข้อความยืนยันเมื่อเพิ่มห้องประชุมสำเร็จ
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Meeting room added successfully!')),
+      );
+
+      // กลับไปยังหน้า RoomStatusPage
+      Navigator.pop(context);
+    } catch (e) {
+      // แสดงข้อความเมื่อเกิดข้อผิดพลาด
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to add meeting room: $e')),
+      );
+    } finally {
       setState(() {
-        _isLoading = true;
+        _isLoading = false;
       });
-
-      final String token = Provider.of<UserProvider>(context, listen: false).accessToken; // รับ token จาก Provider
-
-      try {
-        // เรียกฟังก์ชัน addRoom จาก adminController
-
-        // แสดงข้อความยืนยันเมื่อเพิ่มห้องประชุมสำเร็จ
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Meeting room added successfully!')),
-        );
-      } catch (e) {
-        // แสดงข้อความเมื่อเกิดข้อผิดพลาด
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to add meeting room: $e')),
-        );
-      } finally {
-        setState(() {
-          _isLoading = false;
-        });
-      }
     }
   }
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Meeting Room'),
-        backgroundColor: Colors.pink[400],
+        title: const Text('Add Meeting Room',
+                  style: TextStyle(
+                      color: Colors.white), // เปลี่ยนสีข้อความเป็นสีขาว
+                    ),
+        backgroundColor: Colors.indigo[700],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -93,18 +110,19 @@ class _AddMeetingRoomPageState extends State<AddMeetingRoomPage> {
               ),
               const SizedBox(height: 16),
 
-              // ลบฟิลด์สำหรับกรอกสถานะออกไป
-
               // ปุ่มสำหรับเพิ่มห้องประชุม
               _isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
                       onPressed: _submitForm,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.pink[400], // สีปุ่ม
+                        backgroundColor: Colors.indigo[700], // สีปุ่ม
                       ),
-                      child: const Text('Add Room'),
+                      child: const Text('Add Room',
+                  style: TextStyle(
+                      color: Colors.white), // เปลี่ยนสีข้อความเป็นสีขาว
                     ),
+                  ),
             ],
           ),
         ),
@@ -116,7 +134,6 @@ class _AddMeetingRoomPageState extends State<AddMeetingRoomPage> {
   void dispose() {
     _meetingRoomNumberController.dispose();
     _floorController.dispose();
-    // ลบ _statusController.dispose(); เพราะไม่มีการใช้งานแล้ว
     super.dispose();
   }
 }

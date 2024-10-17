@@ -7,7 +7,7 @@ const User = require("../models/user"); // นำเข้าโมเดล Use
 exports.addRoom = async (req, res) => {
     try {
         const { MeetingRoomNumber, floor } = req.body; // ดึง MeetingRoomNumber และ floor
-
+//hhhh
         // ตรวจสอบว่า MeetingRoomNumber ถูกส่งมาหรือไม่
         if (!MeetingRoomNumber) {
             return res.status(400).json({ message: 'Meeting room number is required' }); // ส่งข้อความถ้าไม่มี MeetingRoomNumber
